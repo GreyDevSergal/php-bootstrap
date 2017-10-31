@@ -1,15 +1,14 @@
 <?php
-require_once('Bootstrap.php');
+require_once('autoload.php');
+
+//declaring dependencies
 use PHPBS\Bootstrap;
 
+//instanciating the bootstrap class
 $bs = new Bootstrap();
 
-if(!file_exists("init.php"))
-{
+//creating the page here
+/* SOME CODE HERE */
 
-    echo("init.php not found");
-    die();
-
-}
-
-require_once("init.php");
+//finally, load the page
+$bs->loadPage();
