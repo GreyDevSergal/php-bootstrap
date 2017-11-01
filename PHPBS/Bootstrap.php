@@ -2,121 +2,105 @@
 
 //declaring dependancies
 use PHPBS\Load;
+use PHPBS\Components\Componentlist;
 
-namespace PHPBS
+namespace PHPBS;
+
+/**
+ * Bootstrap
+ *
+ * @package PHP-Bootstrap
+ * @subpackage PHPBS
+ * @author Grey <luukwauben@hotmail.nl>
+*/
+class Bootstrap extends Components\ComponentList
 {
 
+    //initializing variables
+    private $rawhtmldependencies;
+    private $links, $scripts, $meta;
+
     /**
-     * Bootstrap
-     *
-     * @package PHP-Bootstrap
-     * @subpackage PHPBS
-     * @author Grey <luukwauben@hotmail.nl>
+     * Instanciate Bootstrap class
     */
-    class Bootstrap
+    function __construct()
     {
 
-        //initializing variables
-        private $content;
-        private $rawhtmldependencies;
-        private $links, $scripts, $meta;
+        $this->rawhtmldependencies = $this->getHtmlDependacies();
 
-        /**
-         * Instanciate Bootstrap class
-        */
-        function __construct()
+    }
+
+    /**
+     * load the page
+    */
+    public function loadPage()
+    {
+
+        Load::component('init', ['bs'=>$this]);
+
+    }
+
+    /**
+     * Get links like stylesheets
+    */
+    public function getLinks()
+    {
+
+        foreach($this->rawhtmldependencies['links'] as $dependance)
         {
 
-            $this->rawhtmldependencies = $this->getHtmlDependacies();
-
+            extract($dependance);
+            $this->links .= "<link rel='{$rel}' href='{$href}' integrity='{$integrity}' crossorigin='{$crossorigin}'>";
+            
         }
+        return $this->links;
 
-        /**
-         * load the page
-        */
-        public function loadPage()
+    }
+
+    /**
+     * get JS scripts and alike
+    */
+    public function getScripts()
+    {
+
+        foreach($this->rawhtmldependencies['scripts'] as $dependance)
         {
 
-            Load::component('init', ['bs'=>$this]);
+            extract($dependance);
+            $this->scripts .= "<script src='{$src}' integrity='{$integrity}' crossorigin='{$crossorigin}'></script>";
 
         }
+        return $this->scripts;
 
-        /**
-         * Get links like stylesheets
-        */
-        public function getLinks()
+    }
+
+    /**
+     * get meta data
+    */
+    public function getMeta()
+    {
+
+        foreach($this->rawhtmldependencies['meta'] as $dependance)
         {
 
-            foreach($this->rawhtmldependencies['links'] as $dependance)
-            {
-
-                extract($dependance);
-                $this->links .= "<link rel='{$rel}' href='{$href}' integrity='{$integrity}' crossorigin='{$crossorigin}'>";
-                
-            }
-            return $this->links;
+            extract($dependance);
+            $this->meta .= "<meta name='${name}' content='${content}'>";
 
         }
+        return $this->meta;
 
-        /**
-         * get JS scripts and alike
-        */
-        public function getScripts()
-        {
+    }
 
-            foreach($this->rawhtmldependencies['scripts'] as $dependance)
-            {
+    /**
+     * get html dependancies like links, scripts and meta
+     *
+     * @param string $file_loc (location to a json file containing information on the html dependacies)
+     * @return object
+    */
+    private function getHtmlDependacies(string $file_loc = "htmldependencies.json")
+    {
 
-                extract($dependance);
-                $this->scripts .= "<script src='{$src}' integrity='{$integrity}' crossorigin='{$crossorigin}'></script>";
-
-            }
-            return $this->scripts;
-
-        }
-
-        /**
-         * get meta data
-        */
-        public function getMeta()
-        {
-
-            foreach($this->rawhtmldependencies['meta'] as $dependance)
-            {
-
-                extract($dependance);
-                $this->meta .= "<meta name='${name}' content='${content}'>";
-
-            }
-            return $this->meta;
-
-        }
-
-        /**
-         * push content to page
-         *
-         * @return string
-        */
-        public function getContent()
-        {
-
-            var_dump($this->content);
-
-        }
-
-
-        /**
-         * get html dependancies like links, scripts and meta
-         *
-         * @param string $file_loc (location to a json file containing information on the html dependacies)
-         * @return object
-        */
-        private function getHtmlDependacies($file_loc = "htmldependencies.json")
-        {
-
-            return json_decode(file_get_contents($file_loc), true);
-
-        }
+        return json_decode(file_get_contents($file_loc), true);
 
     }
 

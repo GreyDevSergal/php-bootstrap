@@ -1,6 +1,6 @@
 <?php
 
-//load all files into memory
+//load all classes into memory
 spl_autoload_register(function($class)
 {
 

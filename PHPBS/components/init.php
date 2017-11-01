@@ -3,11 +3,9 @@
 <head>
     <?= $bs->getLinks(); ?>
     <?= $bs->getScripts(); ?>
-    <?= $bs->getMeta(); ?>    
+    <?= $bs->getMeta(); ?>
 </head>
 <body>
-
-    <?= $bs->getContent(); ?>
 
 </body>
 </html>
