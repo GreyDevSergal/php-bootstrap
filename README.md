@@ -16,7 +16,7 @@ Supported parameters:
 - `String` classes: custom classes you want to add to your navbar, seperated by spaces
 
 ```diff
-Children not yet supported!
+- Children not yet supported!
 ```
 
 ```php
