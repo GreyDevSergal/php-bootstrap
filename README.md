@@ -20,6 +20,10 @@ Supported parameters:
 ```
 
 ```php
+// Creating new bootstrap entity
+$bs = new Bootstrap();
+
+// Appending Navbar to page
 $bs->Navbar([
     'theme' => 'dark',
     'brand' => 'PHP-Bootstrap',
