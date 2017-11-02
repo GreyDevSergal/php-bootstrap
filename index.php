@@ -9,19 +9,9 @@ use PHPBS\Components\Test;
 $bs = new Bootstrap();
 
 //creating the page here
-/* SOME CODE HERE */
 
-$bs->Navbar([
-    'theme' => 'dark',
-    'brand' => 'PHP-Bootstrap',
-    'classes' => 'customClass opacity2'
-], [
-    // $bs->NavTitle([]),
-    // $bs->Dropdown([], [
-    //     $bs->Link([]),
-    //     $bs->Link([])
-    // ]),
-    // $bs->Link([])
+$bs->Navbar(['theme' => 'dark', 'text-color' => 'dark', 'link-pos' => 'right', 'brand' => 'PHP-Bootstrap'], [
+    $bs->NavbarLink(['href' => 'https://github.com/UnknowAI/php-bootstrap', 'text' => 'Github'])
 ]);
 
 //finally, load the page

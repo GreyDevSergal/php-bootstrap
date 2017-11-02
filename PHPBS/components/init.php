@@ -6,6 +6,6 @@
     <?= $bs->getMeta(); ?>
 </head>
 <body>
-
+    <?= $bs->getContent(); ?>
 </body>
 </html>

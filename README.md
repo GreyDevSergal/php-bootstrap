@@ -12,6 +12,7 @@ a PHP library for Bootstrap4
 ### Navbar
 Supported parameters:
 - `String` theme: `light`, `primary` or 'dark', this sets the color theme for the navbar
+- `String` text-color: `light`, `primary` or 'dark', this sets the text color theme for the navbar
 - `String` brand: your brand name
 - `String` classes: custom classes you want to add to your navbar, seperated by spaces
 
@@ -24,9 +25,7 @@ Supported parameters:
 $bs = new Bootstrap();
 
 // Appending Navbar to page
-$bs->Navbar([
-    'theme' => 'dark',
-    'brand' => 'PHP-Bootstrap',
-    'classes' => 'customClass opacity2'
-], []);
+$bs->Navbar(['theme' => 'dark', 'text-color' => 'dark', 'link-pos' => 'right', 'brand' => 'PHP-Bootstrap'], [
+    $bs->NavbarLink(['href' => 'https://github.com/UnknowAI/php-bootstrap', 'text' => 'Github'])
+]);
 ```

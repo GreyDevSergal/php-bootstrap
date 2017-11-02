@@ -7,12 +7,13 @@ use PHPBS\ParamMissingException;
 
 class Navbar
 {
+    
+    private $navbar;
 
     function __construct(array $params = null, array $children = null)
     {
         
         $this->getNavbar($params, $children);
-        //var_dump($params, $children);
 
     }
 
@@ -24,12 +25,54 @@ class Navbar
         if(!isset($params['theme']) || $params['theme'] == '')
         {
 
-            new ParamMissingException("theme is not set in Navbar");
+            $send['params']['theme'] = 'light';
+            $params['theme'] = 'light';
 
         }
 
+        if(!isset($params['classes']))
+        {
+
+            $send['params']['classes'] = '';
+            $params['classes'] = '';
+
+        }
+
+        if(!isset($params['link-pos']) || $params['link-pos'] == '')
+        {
+
+            $send['params']['link-pos'] = 'ml';
+            $params['link-pos'] = 'ml';
+
+        }
+
+        if($params['link-pos'] == 'left')
+        {
+
+            $send['params']['link-pos'] = 'mr';
+            $params['link-pos'] = 'mr';
+
+        }
+
+        if($params['link-pos'] == 'right')
+        {
+
+            $send['params']['link-pos'] = 'ml';
+            $params['link-pos'] = 'ml';
+
+        }
+
+        ob_start();
         Load::component('Navbar/NavbarComponent', $send);
+        $this->navbar = ob_get_clean();
         
+    }
+
+    public function getContent()
+    {
+
+        return $this->navbar;
+
     }
 
 }

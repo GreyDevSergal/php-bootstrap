@@ -1,10 +1,10 @@
 <?php
 
+namespace PHPBS;
+
 //declaring dependancies
 use PHPBS\Load;
 use PHPBS\Components\Componentlist;
-
-namespace PHPBS;
 
 /**
  * Bootstrap
@@ -13,7 +13,7 @@ namespace PHPBS;
  * @subpackage PHPBS
  * @author Grey <luukwauben@hotmail.nl>
 */
-class Bootstrap extends Components\ComponentList
+class Bootstrap extends ComponentList
 {
 
     //initializing variables
@@ -37,6 +37,13 @@ class Bootstrap extends Components\ComponentList
     {
 
         Load::component('init', ['bs'=>$this]);
+
+    }
+
+    public function getContent()
+    {
+
+        return $this->content;
 
     }
 
