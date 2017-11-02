@@ -16,9 +16,8 @@ Supported parameters:
 - `String` brand: your brand name
 - `String` classes: custom classes you want to add to your navbar, seperated by spaces
 
-```diff
-- Children not yet supported!
-```
+Supported children:
+- `NavbarLink` a navbar link for navigating your website 
 
 ```php
 // Creating new bootstrap entity
