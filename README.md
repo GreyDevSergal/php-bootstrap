@@ -28,3 +28,19 @@ $bs->Navbar(['theme' => 'dark', 'text-color' => 'dark', 'link-pos' => 'right', '
     $bs->NavbarLink(['href' => 'https://github.com/UnknowAI/php-bootstrap', 'text' => 'Github'])
 ]);
 ```
+
+### NavbarLink
+Supported parameters:
+- `String` href: `url` the url you want your link to go
+- `String` text: `[anything]` the text you want your link to display
+
+```php
+// Creating new bootstrap entity
+$bs = new Bootstrap();
+
+// Appending Navbar to page
+$bs->Navbar(['theme' => 'dark', 'text-color' => 'dark', 'link-pos' => 'right', 'brand' => 'PHP-Bootstrap'], [
+    // Adding link to Navbar
+    $bs->NavbarLink(['href' => 'https://github.com/UnknowAI/php-bootstrap', 'text' => 'Github'])
+]);
+```
