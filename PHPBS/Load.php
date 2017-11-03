@@ -29,7 +29,7 @@ class Load
         {
             
             extract($vars);
-            require_once("Components/{$file}.php");
+            require("Components/{$file}.php");
 
         }
 

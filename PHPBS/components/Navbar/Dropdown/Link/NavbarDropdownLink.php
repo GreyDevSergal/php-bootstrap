@@ -1,11 +1,11 @@
 <?php
 
-namespace PHPBS\Components\Navbar\Link;
+namespace PHPBS\Components\Navbar\Dropdown\Link;
 
 use PHPBS\Load;
 use PHPBS\ParamMissingException;
 
-class NavbarLink
+class NavbarDropdownLink
 {
 
     private $content;
@@ -13,19 +13,12 @@ class NavbarLink
     function __construct(array $params = null)
     {
         
-        $this->getNavbarLink($params);
+        $this->getNavbarDropdownLink($params);
 
     }
 
-    private function getNavbarLink(array $params = null)
+    private function getNavbarDropdownLink(array $params = null)
     {
-
-        if(!isset($params['active']))
-        {
-
-            $params['active'] = false;
-
-        }
 
         if(!isset($params['target']))
         {
@@ -37,8 +30,9 @@ class NavbarLink
         $send = ['params' => $params];
 
         ob_start();
-        Load::component('Navbar/Link/NavbarLinkComponent', $send);
+        Load::component('Navbar/Dropdown/Link/NavbarDropdownLinkComponent', $send);
         $this->content = ob_get_clean();
+
     }
 
     public function getContent()

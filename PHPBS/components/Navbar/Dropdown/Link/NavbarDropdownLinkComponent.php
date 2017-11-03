@@ -1,0 +1,1 @@
+<a class="dropdown-item" href="<?= $params['href'] ?>" target="<?= $params['target'] ?>"><?= $params['content'] ?></a>

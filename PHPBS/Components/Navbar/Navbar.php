@@ -13,12 +13,19 @@ class Navbar
     function __construct(array $params = null, array $children = null)
     {
         
-        $this->getNavbar($params, $children);
+        $this->navbar = $this->getNavbar($params, $children);
 
     }
 
     private function getNavbar(array $params = null, array $children = null)
     {
+
+        if(empty($params))
+        {
+
+            $params = ['theme' => 'light', 'text-color' => 'light', 'link-pos' => 'left', 'brand' => 'PHP-Bootstrap'];
+
+        }
 
         $send = ['params' => $params, 'children' => $children];
 
@@ -46,6 +53,14 @@ class Navbar
 
         }
 
+        if(!isset($params['position']))
+        {
+
+            $send['params']['link-pos'] = '';
+            $params['link-pos'] = '';
+
+        }
+
         if($params['link-pos'] == 'left')
         {
 
@@ -62,9 +77,17 @@ class Navbar
 
         }
 
+        if(!isset($params['position']))
+        {
+
+            $send['params']['position'] = '';
+            $params['position'] = '';
+
+        }
+
         ob_start();
         Load::component('Navbar/NavbarComponent', $send);
-        $this->navbar = ob_get_clean();
+        return ob_get_clean();
         
     }
 
